@@ -39,20 +39,30 @@ const Availability: React.FC = () => {
   };
 
   return (
-    <div className="p-6 max-w-4xl mx-auto">
-      <h1 className="text-2xl font-bold mb-4">Check Car Availability</h1>
-      <DateRangePicker value={dateRange} onChange={setDateRange} />
+    <div className="max-w-5xl mx-auto bg-white shadow-lg rounded-xl p-8 mt-6">
+      <h1 className="text-3xl font-bold text-indigo-700 mb-6 border-b pb-2">🚗 Check Car Availability</h1>
+
+      <div className="mb-4">
+        <DateRangePicker value={dateRange} onChange={setDateRange} />
+      </div>
+
       <button
-        className="mt-4 px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700"
+        className={`mt-2 px-6 py-2 bg-gradient-to-r from-indigo-600 to-violet-600 text-white rounded-md font-semibold shadow hover:shadow-lg transition duration-200 ${
+          loading ? 'opacity-70 cursor-not-allowed' : ''
+        }`}
         onClick={handleCheckAvailability}
         disabled={loading}
       >
-        {loading ? 'Checking...' : 'Check Availability'}
+        {loading ? 'Checking...' : '🔍 Check Availability'}
       </button>
 
-      {error && <p className="text-red-600 mt-4">{error}</p>}
+      {error && (
+        <div className="mt-4 p-3 bg-red-100 text-red-700 rounded border border-red-300">
+          ⚠️ {error}
+        </div>
+      )}
 
-      <div className="mt-6 grid gap-4 grid-cols-1 sm:grid-cols-2">
+      <div className="mt-8 grid gap-6 grid-cols-1 sm:grid-cols-2">
         {cars.map((car, index) => (
           <CarCard
             key={index}
@@ -66,7 +76,7 @@ const Availability: React.FC = () => {
       </div>
 
       {!loading && cars.length === 0 && (
-        <p className="mt-6 text-gray-500">No cars found for selected dates.</p>
+        <p className="mt-8 text-gray-500 italic text-center">No cars found for the selected dates.</p>
       )}
     </div>
   );

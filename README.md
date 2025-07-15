@@ -1,161 +1,128 @@
-# 🚗 Bolttech Carental MVP
+# 🚗 Carental Booking MVP
 
-Welcome to the MVP for the **Bolttech Barcelona Carental Platform**, built as part of the Fullstack Technical Test. This project demonstrates the **Bookings Engine**, focusing on car availability and booking logic based on seasonal pricing.
-
----
-
-## 🌍 Overview
-
-This MVP showcases:
-
-- ✅ Car availability lookup across date ranges
-- ✅ Seasonal pricing (Peak, Mid, Off-season)
-- ✅ Booking system with constraints:
-  - No overlapping bookings per user
-  - Driving license must be valid for the booking duration
+A clean and functional MVP for a car rental platform built using the MERN stack. This project demonstrates real-world booking logic with seasonal pricing and availability management.
 
 ---
 
-## 🛠️ Tech Stack
+## 🔍 Features at a Glance
 
-### Frontend:
-- React (Vite)
-- TypeScript
-- Axios
-- Tailwind CSS (via CDN)
+- 📅 Search car availability for specific date ranges
+- 💸 Seasonal price calculation (peak, mid, off-season)
+- ✅ Validations for:
+  - Driving license expiry
+  - Preventing overlapping bookings
+- 🧪 Basic backend test coverage using Jest
 
-### Backend:
+---
+
+## 🧰 Technologies Used
+
+### Frontend
+
+- React + TypeScript (Vite)
+- Tailwind CSS (CDN-based)
+- Axios for API integration
+
+### Backend
+
 - Node.js + Express
 - TypeScript
-- MongoDB (via Mongoose)
+- MongoDB + Mongoose
 
-### Testing:
-- Jest (basic coverage for booking service)
+### Dev Tools
 
----
-
-## 📦 Installation
-
-### 1. Clone the repository
-```bash
-git clone https://github.com/your-username/bolttech-carental.git
-cd bolttech-carental
-```
-
-### 2. Install dependencies
-```bash
-cd backend
-npm install
-cd ../frontend
-npm install
-```
+- Jest (testing)
+- ESLint & Prettier (formatting)
+- REST API (Postman-tested)
 
 ---
 
-## 🚀 Running the App
+## 🚀 Getting Started
 
-### Start Backend:
-```bash
+1. **Clone the project:**
+   ```bash
+   git clone https://github.com/sartajkhan25/car-rental-service.git
+   ```
+
+### Install dependencies:
+
+cd backend && npm install
+cd ../frontend && npm install
+
+## ▶️ Running the Project
+
+# Start Backend
+
 cd backend
 npm run dev
-```
+Ensure MongoDB is running locally:
+mongodb://localhost:27017/bolttech-carental
 
-> Ensure MongoDB is running locally (`mongodb://localhost:27017/bolttech-carental`)
-
-### Start Frontend:
-```bash
+--Start Frontend
 cd frontend
 npm run dev
-```
 
----
+# 🔗 API Reference
 
-## 📋 API Endpoints
+GET /api/cars/availability
+Returns available cars between fromDate and toDate.
 
-### `GET /api/cars/availability?fromDate=YYYY-MM-DD&toDate=YYYY-MM-DD`
-Returns available cars with total and daily pricing for selected dates.
+POST /api/bookings
+Creates a new booking. Requires:
 
-### `POST /api/bookings`
-Create a booking:
-```json
 {
-  "userId": "<user_id>",
-  "carId": "<car_id>",
-  "fromDate": "YYYY-MM-DD",
-  "toDate": "YYYY-MM-DD"
+"userId": "string",
+"carId": "string",
+"fromDate": "YYYY-MM-DD",
+"toDate": "YYYY-MM-DD"
 }
-```
 
-Returns:
-- `400` if driving license is expired
-- `409` if booking dates overlap
-- `201` on success with booking summary
+# API Responses
 
----
+201 — Success
+400 — Invalid license
+409 — Overlapping booking
 
-## 📅 Seasons & Pricing Logic
+# 🗂️ Folder Structure
 
-| Season      | Dates                               |
-|-------------|-------------------------------------|
-| Peak        | 1st June – 15th Sept                |
-| Mid         | 1st Mar – 31st May, 15th Sept – 31st Oct |
-| Off-season  | 1st Nov – 28th Feb                  |
-
-Prices are defined per car and vary by season.
-
----
-
-## 👨‍💻 Developer Notes
-
-- Used DDD structure for service/controller separation.
-- TDD followed for booking constraints.
-- MVP optimized for demo use only — no user auth or payments.
-
----
-
-## 📂 Project Structure
-
-```
-bolttech-carental/
+car-rental-service/
+│── components/
+│── pages/
+│── services/
+│── main.tsx
 ├── backend/
-│   ├── controllers/
-│   ├── models/
-│   ├── routes/
-│   ├── services/
-│   └── index.ts
-├── frontend/
-│   ├── components/
-│   ├── pages/
-│   ├── services/
-│   ├── App.tsx
-│   └── main.tsx
-```
+│ ├── controllers/
+│ ├── models/
+│ ├── routes/
+│ └── index.ts
 
----
+# ✅ Completed Work
 
-## ✅ Things Done
+Built full-stack car rental MVP
 
-- [x] Car availability API
-- [x] Booking creation
-- [x] License validation
-- [x] Frontend for selecting dates and booking
-- [x] Basic testing
-- [x] Tailwind styling via CDN
+Applied pricing logic based on seasons
 
----
+Developed booking constraints
 
-## 🔜 Future Improvements (if more time)
+Created a clean UI with Tailwind CSS
 
-- [ ] Add user auth (JWT)
-- [ ] Admin panel to manage cars/prices
-- [ ] Better error UI + toast notifications
-- [ ] CI pipeline and deployment (e.g., Vercel + Render)
+Included basic test coverage (backend)
 
----
+# 🔧 Possible Improvements
 
-## 📧 Contact
+User authentication & JWT
 
-For any queries:  
-**Shreya Dhaga**  
-📧 [dhagashreya@gmail.com]  
----
+Admin dashboard for inventory
+
+Toast notifications for better UX
+
+Dockerized setup
+
+CI/CD (Render, Vercel)
+
+# Maintainer
+
+Sartaj Khan
+Frontend + Backend Developer
+sartaj2493@gmail.com
+user: sartajkhan25
